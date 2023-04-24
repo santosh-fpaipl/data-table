@@ -1,0 +1,21 @@
+{
+    "name": "fpaipl/features",
+    "description": "It contains variour standalone features required in main app.",
+    "type": "library",
+    "require": {
+        "livewire/livewire": "dev-master"
+    },
+    "license": "Unlicensed",
+    "autoload": {
+        "psr-4": {
+            "Fpaipl\\Features\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Santosh Singh",
+            "email": "BackendSR1@FPAIPL.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
