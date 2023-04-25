@@ -277,25 +277,26 @@ class Datatables extends Component
 
     public function deleteSelectedRecord()
     {
-        $deleteStatus = $this->model::softDeleteModel($this->selectedRecords, $this->model);
-        if ($deleteStatus == 'hasDependentRecord') {
-            $this->emit('delete', [
-                'class' => 'danger',
-                'text' => $this->messages['has_dependency']
-            ]);
-           
-        }else if ($deleteStatus == true) {
-            $this->emit('delete', [
-                'class' => 'success',
-                'text' => $this->messages['delete_success']
-            ]);
-            
-        } else {
-            $this->emit('delete', [
-                'class' => 'danger',
-                'text' => $this->messages['delete_success']
-            ]);
-          
+        $response = $this->model::softDeleteModel($this->selectedRecords, $this->model);
+        switch ($response) {
+            case 'dependent':
+                $this->emit('delete', [
+                    'class' => 'danger',
+                    'text' => $this->messages['has_dependency']
+                ]);
+                break;
+            case 'success':
+                $this->emit('delete', [
+                    'class' => 'success',
+                    'text' => $this->messages['delete_success']
+                ]);
+                break;    
+            default: // failure
+                $this->emit('delete', [
+                    'class' => 'danger',
+                    'text' => $this->messages['delete_error']
+                ]);
+                break;
         }
        
         $this->setRefreshState();
