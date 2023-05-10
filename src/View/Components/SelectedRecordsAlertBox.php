@@ -1,6 +1,6 @@
 <?php
 
-namespace Fpaipl\Features\View\Components;
+namespace Fpaipl\Panel\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -25,6 +25,6 @@ class SelectedRecordsAlertBox extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('features::components.selected-records-alert-box');
+        return view('panel::components.selected-records-alert-box');
     }
 }

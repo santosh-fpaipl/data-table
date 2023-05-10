@@ -1,6 +1,6 @@
 <?php
 
-namespace Fpaipl\Features\View\Components;
+namespace Fpaipl\Panel\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -45,6 +45,6 @@ class DependentModel extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('features::components.dependent-model');
+        return view('panel::components.dependent-model');
     }
 }

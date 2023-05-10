@@ -1,12 +1,18 @@
-@extends('layouts.master')
+@extends('panel::layouts.datatable')
 
 @section('content')
 
     <div class="d-flex align-items-center">
-        <a class="btn me-1" href="{{ route(Str::plural($modelName) . '.index') }}">
+        {{-- <a class="btn me-1" href="{{ route(Str::plural($modelName) . '.index') }}">
             <i class="bi bi-arrow-left"></i>
-        </a>
-        <span class="fs-5 text-capitalize">{{ $message['import_page'] }}</span>
+        </a> --}}
+        {{-- <span class="fs-5 text-capitalize">{{ $message['import_page'] }}</span> --}}
+
+        {!! createBreadcrum($modelName, 'import') !!}
+
+        @push('page-title')
+            {{ $message['import_page'] }}
+        @endpush
     </div>
 
     <hr>

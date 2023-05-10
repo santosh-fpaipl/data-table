@@ -10,7 +10,7 @@
                             {{ $field['labels']['table'] }}
                         </div>
                         <div class="px-2 pb-2 border-bottom w-100">
-                            @include('features::includes.' .$field['tbody']['view'], [
+                            @include('panel::includes.' .$field['tbody']['view'], [
                                 'currentPage' => $currentPage, 
                                 'pageLength' => $pageLength, 
                                 'iteration'=> $loop->parent->iteration,

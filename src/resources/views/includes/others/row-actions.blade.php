@@ -1,7 +1,7 @@
 <div class="btn-group">
     @foreach ($buttonsTable as $button)
         @if ($button['show'][$activePage])
-            @include('features::includes.' . $button['type'], [
+            @include('panel::includes.' . $button['type'], [
                 'bulkDisabled' => $bulkDisabled, 
                 'title' => $button['label'],
                 'style' => $button['style'],

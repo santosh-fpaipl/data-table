@@ -1,6 +1,6 @@
 <?php
 
-namespace Fpaipl\Features\Http\Livewire;
+namespace Fpaipl\Panel\Http\Livewire;
 use Livewire\Component;
 use Route;
 
@@ -55,6 +55,6 @@ class Delete extends Component
 
     public function render()
     {
-        return view('features::livewire.delete');
+        return view('panel::livewire.delete');
     }
 }

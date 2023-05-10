@@ -10,7 +10,7 @@
         <option value="{{ $subrecord->id }}" @if (!empty($model) && $subrecord->id == $model->$name) selected @endif>{{ $separator }}{{ $subrecord->name }}</option>
         @if ($options['withRelation'] && method_exists($subrecord, $options['relation']) && $subrecord->{$options['relation']})
 
-            @include('features::includes.forms.child-option',[
+            @include('panel::includes.forms.child-option',[
                 'subrecords' => $subrecord->{$options['relation']}, 
                 'separator' => $separator, 
                 'model' =>empty($model) ? '' : $model,

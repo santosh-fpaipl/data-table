@@ -1,13 +1,19 @@
-@extends('layouts.master')
+@extends('panel::layouts.datatable')
 
 @section('content')
 
     <div>
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        {{-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <span class="fs-4">{{ $messages['list_page'] }}</span>
-        </a>
+        </a> --}}
 
-        <hr>
+        {{-- <hr> --}}
+
+
+        @push('page-title')
+            {{ $messages['list_page'] }}
+        @endpush
+
 
         {{-- @livewire($modelName . '.' .$modelName.'-list',key(Str::plural($modelName, 2) . '-list-' . now())) --}}
 

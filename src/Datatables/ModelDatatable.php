@@ -1,10 +1,10 @@
 <?php
 
-namespace Fpaipl\Features\Datatables;
+namespace Fpaipl\Panel\Datatables;
 
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
-use Fpaipl\Features\Datatables\Datatable;
+use Fpaipl\Panel\Datatables\Datatable;
 
 abstract class ModelDatatable implements Datatable
 {
@@ -564,7 +564,7 @@ abstract class ModelDatatable implements Datatable
 
             'show_page' => "{$this->getModelName('title')}",
 
-            'create_page' => "Add {$this->getModelName('title')}",
+            'create_page' => "Create {$this->getModelName('title')}",
 
             'edit_page' => "Edit {$this->getModelName('title')}",
 
@@ -596,7 +596,7 @@ abstract class ModelDatatable implements Datatable
 
             'no_record_found' => "No data available to show.",
 
-            'under_dev'=> "Oops! Feature Under Development"
+            'under_dev'=> "Oops! Panel Under Development"
 
         );
 

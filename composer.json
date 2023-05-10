@@ -1,6 +1,6 @@
 {
-    "name": "fpaipl/features",
-    "description": "It contains variour standalone features required in main app.",
+    "name": "fpaipl/panel",
+    "description": "It contains variour standalone panel required in main app.",
     "type": "library",
     "require": {
         "livewire/livewire": "dev-master"
@@ -8,7 +8,7 @@
     "license": "Unlicensed",
     "autoload": {
         "psr-4": {
-            "Fpaipl\\Features\\": "src/"
+            "Fpaipl\\Panel\\": "src/"
         }
     },
     "authors": [

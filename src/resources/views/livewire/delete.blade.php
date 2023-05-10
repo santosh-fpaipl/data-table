@@ -2,12 +2,18 @@
     <div class="d-flex align-items-center">
                 
         {{-- Back --}}
-        <a href="{{ route(Str::plural($modelName) . '.index', ['page'=>request()->query('page'),'from' =>'crud' ]) }}">
+        {{-- <a href="{{ route(Str::plural($modelName) . '.index', ['page'=>request()->query('page'),'from' =>'crud' ]) }}">
             <button type="button" class="btn"><i class="bi bi-arrow-left"></i></button>
-        </a>
+        </a> --}}
         
         {{-- Form Title --}}
-        <p class="fs-5 fw-bold mb-0">{{ $messages[ $formType . '_page'] }}</p>
+        {{-- <p class="fs-5 fw-bold mb-0">{{ $messages[ $formType . '_page'] }}</p> --}}
+
+        {!! createBreadcrum($modelName, 'delete') !!}
+
+        @push('page-title')
+            {{ $messages[ $formType . '_page'] }}
+        @endpush
 
     </div>
     <hr>
@@ -16,7 +22,7 @@
                
         <div class="mb-3">
 
-            <x-features-dependent-model :model="$model" />
+            <x-panel-dependent-model :model="$model" />
         
         </div>
         

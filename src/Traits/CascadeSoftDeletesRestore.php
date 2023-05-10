@@ -1,6 +1,6 @@
 <?php
 
-namespace Fpaipl\Features\Traits;
+namespace Fpaipl\Panel\Traits;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Str;

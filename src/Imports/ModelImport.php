@@ -1,6 +1,6 @@
 <?php
 
-namespace Fpaipl\Features\Imports;
+namespace Fpaipl\Panel\Imports;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;

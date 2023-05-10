@@ -1,6 +1,6 @@
 <?php
 
-namespace Fpaipl\Features\Datatables;
+namespace Fpaipl\Panel\Datatables;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -42,7 +42,7 @@ interface Datatable
     public function buttons($position): array;
 
     /**
-     * It controll the all feature comes on list page like search, filter, bulk action, pagination etc
+     * It controll the all features comes on list page like search, filter, bulk action, pagination etc
      */
     public function features(): array;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fpaipl\Features\Exports;
+namespace Fpaipl\Panel\Exports;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromArray;

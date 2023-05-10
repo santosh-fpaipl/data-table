@@ -1,6 +1,6 @@
 <?php
 
-namespace Fpaipl\Features\View\Components;
+namespace Fpaipl\Panel\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -40,6 +40,6 @@ class BulkSelect extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('features::components.bulk-select');
+        return view('panel::components.bulk-select');
     }
 }

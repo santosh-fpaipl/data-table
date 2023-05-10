@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('panel::layouts.datatable')
 
 @section('content')
 
@@ -27,13 +27,18 @@
             <div class="d-flex align-items-center">
                 
                 {{-- Back --}}
-                <a href="{{ route(Str::plural($modelName) . '.index',['page'=>request()->query('page'),'from' =>'crud' ]) }}">
+                {{-- <a href="{{ route(Str::plural($modelName) . '.index',['page'=>request()->query('page'),'from' =>'crud' ]) }}">
                     <button type="button" class="btn"><i class="bi bi-arrow-left"></i></button>
-                </a>
+                </a> --}}
                 
                 {{-- Form Title --}}
-                <p class="fs-5 fw-bold mb-0">{{ $messages[ $formType . '_page'] }}</p>
-
+                {{-- <p class="fs-5 fw-bold mb-0">{{ $messages[ $formType . '_page'] }}</p> --}}
+                
+                {!! createBreadcrum($modelName, $formType) !!}
+                
+                @push('page-title')
+                    {{ $messages[ $formType . '_page'] }}
+                @endpush
             </div>
 
 
@@ -70,7 +75,7 @@
                                 $field['fillable']['rows'] : Number of rows in textarea
                             --}}
 
-                            @include('features::includes.' .$field['fillable']['component'], [
+                            @include('panel::includes.' .$field['fillable']['component'], [
                                 'type' => $field['fillable']['type'],
                                 'options' => isset($field['fillable']['options']) ? $field['fillable']['options'] : null,
                                 'name' => $field['name'], 
@@ -88,7 +93,7 @@
                     @endforeach
 
             @if ($formType == 'show')
-                <x-features-dependent-model :model="$model" />
+                <x-panel-dependent-model :model="$model" />
             @else
                     <div class="d-flex justify-content-between">
                         <button type="reset" class="btn px-3 btn-secondary">Reset</button>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fpaipl\Features\Http\Livewire;
+namespace Fpaipl\Panel\Http\Livewire;
 
 use Livewire\Component;
 
@@ -21,6 +21,6 @@ class AlertBox extends Component
 
     public function render()
     {
-        return view('features::livewire.alert-box');
+        return view('panel::livewire.alert-box');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fpaipl\Features\Traits;
+namespace Fpaipl\Panel\Traits;
 
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Activitylog\Contracts\Activity;

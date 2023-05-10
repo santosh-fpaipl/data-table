@@ -1,18 +1,18 @@
 <?php
 
-namespace Fpaipl\Features;
+namespace Fpaipl\Panel;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
-use Fpaipl\Features\Http\Livewire\Datatables;
-use Fpaipl\Features\Http\Livewire\Delete;
-use Fpaipl\Features\Http\Livewire\AppToast;
-use Fpaipl\Features\Http\Livewire\AlertBox;
-use Fpaipl\Features\View\Components\BulkSelect;
-use Fpaipl\Features\View\Components\SelectedRecordsAlertBox;
-use Fpaipl\Features\View\Components\DependentModel;
-use Fpaipl\Features\Datatables\ModelDatatable;
+use Fpaipl\Panel\Http\Livewire\Datatables;
+use Fpaipl\Panel\Http\Livewire\Delete;
+use Fpaipl\Panel\Http\Livewire\AppToast;
+use Fpaipl\Panel\Http\Livewire\AlertBox;
+use Fpaipl\Panel\View\Components\BulkSelect;
+use Fpaipl\Panel\View\Components\SelectedRecordsAlertBox;
+use Fpaipl\Panel\View\Components\DependentModel;
+use Fpaipl\Panel\Datatables\ModelDatatable;
 
 /*
 Calling way  in main app:
@@ -20,13 +20,13 @@ Calling way  in main app:
 1. Livewire Component
 @livewire('app-toast')
 2. Blade Component
-<x-features::alert-box />
+<x-panel::alert-box />
 3. Blade View
-@include('features::test')
+@include('panel::test')
 
 */
 
-class FeaturesServiceProvider extends ServiceProvider {
+class PanelServiceProvider extends ServiceProvider {
 
     /**
      * Register any application services.
@@ -42,8 +42,8 @@ class FeaturesServiceProvider extends ServiceProvider {
     public function boot(): void
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-        $this->loadViewsFrom(__DIR__.'/resources/views', 'features');
-        $this->loadViewComponentsAs('features', [
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'panel');
+        $this->loadViewComponentsAs('panel', [
             BulkSelect::class,
             SelectedRecordsAlertBox::class,
             DependentModel::class,
@@ -52,6 +52,10 @@ class FeaturesServiceProvider extends ServiceProvider {
         Livewire::component('alert-box', AlertBox::class);
         Livewire::component('datatables', Datatables::class);
         Livewire::component('delete', Delete::class);
+        $this->publishes([
+            __DIR__.'/../config/panel.php' => config_path('panel.php'),
+            __DIR__.'/../config/settings.php' => config_path('settings.php'),
+        ],'panel');
     }
 
     public function provides(): array

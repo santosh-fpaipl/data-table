@@ -1,7 +1,7 @@
 {{-- 
    It show the success or error messages. 
 --}}
-<div class="position-fixed top-0 end-0 m-4" style="z-index:100">
+<div class="position-fixed top-0 end-0 m-4" style="z-index:9999">
     @if ($showAlert)
     <div class="alert py-1 alert-{{ $alertClass }}" role="alert">
         <div class="d-flex align-items-center justify-content-between">

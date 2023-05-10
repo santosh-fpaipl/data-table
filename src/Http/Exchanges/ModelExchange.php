@@ -1,15 +1,15 @@
 <?php
 
-namespace Fpaipl\Features\Http\Exchanges;
+namespace Fpaipl\Panel\Http\Exchanges;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
-use Fpaipl\Features\Imports\ModelImport;
+use Fpaipl\Panel\Imports\ModelImport;
 use Spatie\Activitylog\Models\Activity;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
-use Fpaipl\Features\Exports\ModelExport;
+use Fpaipl\Panel\Exports\ModelExport;
 
 class ModelExchange extends Controller
 {
@@ -45,7 +45,7 @@ class ModelExchange extends Controller
 
     public function importData()
     {
-        return view('features::forms.model-import', [
+        return view('panel::forms.model-import', [
             'message' =>   $this->messages,
             'modelName' => $this->modelName
         ]);
@@ -76,7 +76,7 @@ class ModelExchange extends Controller
             'text' => $this->messages['import_success']
         ]);
 
-        return view('features::forms.model-import', [
+        return view('panel::forms.model-import', [
             'message' =>   $this->messages,
             'modelName' => $this->modelName,
             'batchActivities' => $batchActivities,
@@ -85,7 +85,7 @@ class ModelExchange extends Controller
 
     // public function import()
     // {
-    //     return view('features::forms.model-import', [
+    //     return view('panel::forms.model-import', [
     //         'message' =>   $this->messages,
     //         'modelName' => $this->modelName
     //     ]);
@@ -116,7 +116,7 @@ class ModelExchange extends Controller
     //         'text' => $this->messages['import_success']
     //     ]);
 
-    //     return view('features::forms.model-import', [
+    //     return view('panel::forms.model-import', [
     //         'message' =>   $this->messages,
     //         'modelName' => $this->modelName,
     //         'batchActivities' => $batchActivities,

@@ -29,7 +29,7 @@
           <option value="{{ $record->id }}" @if (!empty($model) && $record->id == $model->$name) selected @endif>{{ $record->name }}</option>
           
           @if ($options['withRelation'] && method_exists($record, $options['relation']) && $record->{$options['relation']})
-              @include('features::includes.forms.child-option',[
+              @include('panel::includes.forms.child-option',[
                 'subrecords' => $record->{$options['relation']}, 
                 'separator' => $separator, 
                 'model' =>empty($model) ? '' : $model,

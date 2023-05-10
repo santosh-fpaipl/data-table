@@ -1,6 +1,6 @@
 <?php
 
-namespace Fpaipl\Features\Http\Livewire;
+namespace Fpaipl\Panel\Http\Livewire;
 
 use Livewire\Component;
 
@@ -43,6 +43,6 @@ class AppToast extends Component
 
     public function render()
     {
-        return view('features::livewire.app-toast');
+        return view('panel::livewire.app-toast');
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace Fpaipl\Features\Http\Livewire;
+namespace Fpaipl\Panel\Http\Livewire;
 
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
-use Fpaipl\Features\Exports\ModelCustomExport;
+use Fpaipl\Panel\Exports\ModelCustomExport;
 
 
 class Datatables extends Component
@@ -91,7 +91,7 @@ class Datatables extends Component
     public function setInitialDefaults()
     {
         $this->activePage ='active';
-        $this->rowActionsEnabled = $this->features['row_actions']['show']['view'][$this->activePage] || $this->features['row_actions']['show']['edit'] || $this->features['row_actions']['show']['delete'];
+        $this->rowActionsEnabled = $this->features['row_actions']['show']['view'][$this->activePage] || $this->panel['row_actions']['show']['edit'] || $this->panel['row_actions']['show']['delete'];
         $this->setRefreshState();
     }
 
@@ -336,7 +336,7 @@ class Datatables extends Component
 
     public function render()
     {
-        return view('features::livewire.datatables', [
+        return view('panel::livewire.datatables', [
             'data' => $this->fetchData()
         ]);
     }
