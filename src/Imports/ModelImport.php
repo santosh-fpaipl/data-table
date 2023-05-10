@@ -14,6 +14,7 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Spatie\Activitylog\Contracts\Activity;
 use Maatwebsite\Excel\Concerns\Importable;
 use Spatie\Activitylog\Facades\LogBatch;
+use Illuminate\Support\Facades\Auth;
 use Error;
 
 // This import is used to create only new record
@@ -150,7 +151,7 @@ class ModelImport implements ToCollection, WithHeadingRow, WithChunkReading
         activity()
             ->event('batch')
             ->performedOn(new $this->model)
-            ->causedBy(User::first()) // Auth::user()
+            ->causedBy(Auth::user()) // Auth::user()
             ->withProperties($this->batchLog)
             ->tap(function (Activity $activity) {
                 $activity->log_name = $this->datatable::IMPORT_BATCH_LOG_NAME;
