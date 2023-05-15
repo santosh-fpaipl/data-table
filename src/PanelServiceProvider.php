@@ -58,11 +58,11 @@ class PanelServiceProvider extends ServiceProvider {
         ],'panel');
     }
 
-    public function provides(): array
-    {
-        return [
-            ModelDatatable::class
-        ];
-    }
+    // public function provides(): array
+    // {
+    //     return [
+    //         ModelDatatable::class
+    //     ];
+    // }
 
 }

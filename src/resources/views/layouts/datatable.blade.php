@@ -1,4 +1,4 @@
-@extends('dashboard::dashboard')
+@extends('dashboard::layouts.main')
 
 @section('dashboard')
     
