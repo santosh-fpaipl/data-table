@@ -40,7 +40,7 @@
   </select>
 
   @error($name)
-      <span>{{ $message }}</span>
+      <span class="input_val_error">{{ $message }}</span>
   @enderror
 
 </div>

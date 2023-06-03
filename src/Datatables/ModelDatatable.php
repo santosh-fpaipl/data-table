@@ -114,10 +114,9 @@ abstract class ModelDatatable implements Datatable
     }
 
     /**
-     * /**
-     * Here we provide all the top buttons which comes on list page like Add, Import etc.
-     */ 
-    public function topButtons(): array
+     * Here we provide the top buttons which comes on list page Import, DownloadSample.
+    */ 
+    public function topButtonsPart1(): array
     {
         return array(
             'import' => [
@@ -142,63 +141,73 @@ abstract class ModelDatatable implements Datatable
                 'route' => 'export-sample.model',
                 'function' => '',
             ],
-            'export' => [
-                'show' => [
-                    'active' => true,
-                    'trash' => true
-                ],
-                'label' => 'Export',
-                'type' => 'buttons.action-btn',
-                'style' => 'mw-100px me-2',
-                'route' => false,
-                'function' => 'export',
-            ],
-            'bulk_delete' => [
-                'show' => [
-                    'active' => $this->features()['bulk_actions']['show']['active'],
-                    'trash' => false, // Will always be false because we can't delete on trash page.
-                ],
-                'label' => 'Bulk Delete',
-                'type' => 'buttons.action-btn',
-                'style' => 'mw-100 px-2 me-2 text-danger',
-                'route' => false,
-                'function' => 'deleteSelectedRecord',
-            ],
-            'bulk_restore' => [
-                'show' => [
-                    'active' => false, // Will always be false because we can't restore on active page.
-                    'trash' => $this->features()['bulk_actions']['show']['trash'],
-                ],
-                'label' => 'Bulk Restore',
-                'type' => 'buttons.action-btn',
-                'style' => 'mw-100 px-2 me-2 text-danger',
-                'route' => false,
-                'function' => 'restoreSelectedRecords',
-            ],
-            'trash' => [
-                'show' => [
-                    'active' => true,
-                    'trash' => false
-                ],
-                'label' => 'Trash',
-                'type' => 'buttons.action-btn',
-                'style' => 'mw-100px me-2',
-                'route' => false,
-                'function' => "toggleTrash('trash')",
-            ],
-            'active' => [
-                'show' => [
-                    'active' => false,
-                    'trash' => true
-                ],
-                'label' => 'Active',
-                'type' => 'buttons.action-btn',
-                'style' => 'mw-100px me-2',
-                'route' => false,
-                'function' => "toggleTrash('active')",
-            ],
         );
     }
+
+    /**
+     * Here we provide the top buttons which comes on list page Export, BulkDelete, Trash.
+     */
+
+     public function topButtonsPart2(): array
+     {
+         return array(
+             'export' => [
+                 'show' => [
+                     'active' => true,
+                     'trash' => true
+                 ],
+                 'label' => 'Export',
+                 'type' => 'buttons.action-btn',
+                 'style' => 'mw-100px me-2',
+                 'route' => false,
+                 'function' => 'export',
+             ],
+             'bulk_delete' => [
+                 'show' => [
+                     'active' => $this->features()['bulk_actions']['show']['active'],
+                     'trash' => false, // Will always be false because we can't delete on trash page.
+                 ],
+                 'label' => 'Bulk Delete',
+                 'type' => 'buttons.action-btn',
+                 'style' => 'mw-100 px-2 me-2 text-danger',
+                 'route' => false,
+                 'function' => 'deleteSelectedRecord',
+             ],
+             'bulk_restore' => [
+                 'show' => [
+                     'active' => false, // Will always be false because we can't restore on active page.
+                     'trash' => $this->features()['bulk_actions']['show']['trash'],
+                 ],
+                 'label' => 'Bulk Restore',
+                 'type' => 'buttons.action-btn',
+                 'style' => 'mw-100 px-2 me-2 text-danger',
+                 'route' => false,
+                 'function' => 'restoreSelectedRecords',
+             ],
+             'trash' => [
+                 'show' => [
+                     'active' => true,
+                     'trash' => false
+                 ],
+                 'label' => 'Trash',
+                 'type' => 'buttons.action-btn',
+                 'style' => 'mw-100px me-2',
+                 'route' => false,
+                 'function' => "toggleTrash('trash')",
+             ],
+             'active' => [
+                 'show' => [
+                     'active' => false,
+                     'trash' => true
+                 ],
+                 'label' => 'Active',
+                 'type' => 'buttons.action-btn',
+                 'style' => 'mw-100px me-2',
+                 'route' => false,
+                 'function' => "toggleTrash('active')",
+             ],
+         );
+     }
 
     /**
      * This will give list of actions/links availabel on top of datatable,
@@ -280,46 +289,6 @@ abstract class ModelDatatable implements Datatable
     public function getDefaultPostColumns(): array
     {
         return array(
-            'slug' => [
-                'name' => 'slug',
-                'labels' => [
-                    'table' => 'Slug',
-                    'export' => 'Slug'
-                ],
-
-                'thead' => [
-                    'view' => 'buttons.sortit',
-                    'value' => '',
-                    'align' => '',
-                ],
-                'tbody' => [
-                    'view' => 'cells.text-value',
-                    'value' => '',
-                    'align' => '',
-                ],
-                'viewable' => [
-                    'active' => false,
-                    'trash' => false
-                ],
-                'importable' => false,
-                'expandable' => [
-                    'active' => true,
-                    'trash' => false
-                ],
-                'sortable' => false,
-                'filterable' => [
-                    'active' => true,
-                    'trash' => false
-                ],
-                'exportable' => [
-                    'active' => true,
-                    'trash' => false,
-                    'value' => 'getValue'
-                ],
-                'artificial' => true,
-
-
-            ],
             'created_at' => [
                 'name' => 'created_at',
                 'labels' => [
@@ -437,6 +406,56 @@ abstract class ModelDatatable implements Datatable
 
 
             ]
+        );
+    }
+
+    /**
+    * Here we provide the slug column
+    */
+
+    public function getDefaultSlugColumns(): array
+    {
+        return array(
+            'slug' => [
+                'name' => 'slug',
+                'labels' => [
+                    'table' => 'Slug',
+                    'export' => 'Slug'
+                ],
+
+                'thead' => [
+                    'view' => 'buttons.sortit',
+                    'value' => '',
+                    'align' => '',
+                ],
+                'tbody' => [
+                    'view' => 'cells.text-value',
+                    'value' => '',
+                    'align' => '',
+                ],
+                'viewable' => [
+                    'active' => false,
+                    'trash' => false
+                ],
+                'importable' => false,
+                'expandable' => [
+                    'active' => true,
+                    'trash' => false
+                ],
+                'sortable' => false,
+                'filterable' => [
+                    'active' => true,
+                    'trash' => false
+                ],
+                'exportable' => [
+                    'active' => true,
+                    'trash' => false,
+                    'value' => 'getValue'
+                ],
+                'artificial' => true,
+
+
+            ],
         );
     }
 

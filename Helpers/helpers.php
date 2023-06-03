@@ -1,6 +1,9 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use App\Models\Size;
+use App\Models\Taxation;
+
 
 
 function createBreadcrum($modelName, $formType){
@@ -47,8 +50,17 @@ function replaceKeyName($array, $oldKey, $newKey) {
     return $array;
 }
 
+function getTaxationName($model){
+    $taxation= Taxation::findOrFail($model->taxation_id);
+    return $taxation->name;
+}
 
 function getParentName($model, $key)
+{
+    return $model->{__FUNCTION__}($key);
+}
+
+function getUserData($model, $key)
 {
     return $model->{__FUNCTION__}($key);
 }
@@ -91,6 +103,22 @@ function getRoutesArray():array
         'dashboard' =>[
             'home',
         ],
+        'user' => [
+            'users.index',
+            'users.show',
+            'user.delete',
+            'user.import.form',
+            'user.import',
+            'user.export',
+        ],
+        'profile' => [
+            'profiles.index',
+            'profiles.show',
+            'profiles.delete',
+            'profiles.import.form',
+            'profiles.import',
+            'profiles.export',
+        ],
         'category' => [
             'categories.index',
             'categories.create',
@@ -103,17 +131,35 @@ function getRoutesArray():array
             'category.import',
             'category.export',
         ],
-        'item' => [
-            'items.index',
-            'items.create',
-            'items.store',
-            'items.show',
-            'items.edit',
-            'items.update',
-            'item.delete',
-            'item.import.form',
-            'item.import',
-            'item.export',
+        'product' => [
+            'products.index',
+            'products.create',
+            'products.store',
+            'products.show',
+            'products.edit',
+            'products.update',
+            'product.delete',
+            'product.import.form',
+            'product.import',
+            'product.export',
+        ],
+        'order' => [
+            'orders.index',
+            'orders.show',
+            'orders.delete',
+            'orders.export',
+        ],
+        'collection' => [
+            'collections.index',
+            'collections.create',
+            'collections.store',
+            'collections.show',
+            'collections.edit',
+            'collections.update',
+            'collection.delete',
+            'collection.import.form',
+            'collection.import',
+            'collection.export',
         ],
         
     );

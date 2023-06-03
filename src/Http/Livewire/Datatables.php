@@ -20,7 +20,7 @@ class Datatables extends Component
     public $sortByColumn;
     public $sortInOrder;
     public $sortSelect;
-    const SORT_SELECT_DEFAULT = 'name#asc';
+    public $sort_select_default = 'name#asc';
 
     public $search;
 
@@ -79,6 +79,7 @@ class Datatables extends Component
     public function prepareModelDatatable()
     {
         $this->datatable = new $this->datatableClass();
+        $this->sort_select_default = $this->datatableClass::SORT_SELECT_DEFAULT;
         $this->features = $this->datatable->features();
         $this->buttonsTop = $this->datatable->buttons('top');
         $this->buttonsTable = $this->datatable->buttons('table');
@@ -103,7 +104,7 @@ class Datatables extends Component
         $this->selectAll = false;
         $this->selectedRecords = [];
         $this->filteredRecords;
-        $this->sortSelect = self::SORT_SELECT_DEFAULT;
+        $this->sortSelect = $this->sort_select_default;
         $this->updatedSortSelect($this->sortSelect);
         $this->managePagination();
         $this->refreshOnEveryUpdate();
@@ -151,9 +152,12 @@ class Datatables extends Component
         $query = $query->orderby($this->sortByColumn, $this->sortInOrder);
 
         // Search Query
-        if (!empty($this->search)) {
-            $query->where('name', 'like', '%' . $this->search . '%');
+        if($this->features['search']['show'][$this->activePage]){
+            if (!empty($this->search)) {
+                $query->where('tags', 'like', '%' . $this->search . '%');
+            }
         }
+        
 
         // Execute Query
         if ($flag == 'export') {
@@ -194,7 +198,7 @@ class Datatables extends Component
     public function updatedSortSelect($value)
     {
         if (empty($value)) {
-            $this->sortSelect = self::SORT_SELECT_DEFAULT;
+            $this->sortSelect = $this->sort_select_default;
             return $this->updatedSortSelect($this->sortSelect);
         }
         $this->sortByColumn = Str::before($value, '#');

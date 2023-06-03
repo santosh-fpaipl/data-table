@@ -1,6 +1,7 @@
 <?php
 
 namespace Fpaipl\Panel\Traits;
+use Illuminate\Database\Eloquent\Collection;
 
 trait ManageModel
 {
@@ -12,8 +13,22 @@ trait ManageModel
             foreach($records as $record){
                 $Model = $model::findorfail($record);
                 if($Model->hasDependency()){
-                    foreach($Model->getDependency() as $dependency){
-                        if($Model->$dependency->count()){
+                    foreach($Model->getDependency() as $relationalDependency){
+                        
+                        $relationDependencies = $Model->$relationalDependency;
+
+                        if(empty($relationDependencies)){
+                            $relationCount = 0;
+                        } else {
+                            if ($relationDependencies instanceof Collection) {
+                                $relationCount = $relationDependencies->count();
+                            } else {
+                                $relationCount = 1;
+                            }
+                        }
+
+
+                        if($relationCount){
                             $hasDependentRecord = true;
                             break;
                         }

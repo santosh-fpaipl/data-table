@@ -93,7 +93,31 @@
                     @endforeach
 
             @if ($formType == 'show')
+                <hr>
+
+                @if ($model instanceOf App\Models\Product)
+                    <div class="mb-3">
+                        <div>
+                            <livewire:color-image-size wire:key="now()"  :productId="$model->id" />
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="mb-3">
+                        <div>
+                            <livewire:product-attribute wire:key="now()" :productId="$model->id" />
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="mb-3">
+                        <div>
+                            <livewire:size-chart wire:key="now()" :productId="$model->id" />
+                        </div>
+                    </div>
+                    <hr>
+                @endif
+                
                 <x-panel-dependent-model :model="$model" />
+            
             @else
                     <div class="d-flex justify-content-between">
                         <button type="reset" class="btn px-3 btn-secondary">Reset</button>

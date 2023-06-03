@@ -76,7 +76,14 @@ class PanelController extends BaseController
     {
         if ($this->model::EDITABLE()) {
 
-            $model = $this->model::where('slug', $request->route()->parameters()[$this->param])->firstOrFail();
+            if($this->model == 'App\Models\User' 
+                or $this->model == 'App\Models\Order' 
+                or $this->model == 'App\Models\Profile'
+            ){
+                $model = $this->model::where('id', $request->route()->parameters()[$this->param])->firstOrFail();
+            } else {
+                $model = $this->model::where('slug', $request->route()->parameters()[$this->param])->firstOrFail();
+            }
 
             return view('panel::forms.model-crud', [
                 'model' => $model, 
@@ -98,7 +105,15 @@ class PanelController extends BaseController
     public function show(Request $request, )
     {
         if ($this->model::VIEWABLE()) {
-            $model = $this->model::where('slug', $request->route()->parameters()[$this->param])->withTrashed()->firstOrFail();
+
+            if($this->model == 'App\Models\User' 
+                or $this->model == 'App\Models\Order'
+                or $this->model == 'App\Models\Profile'
+            ){
+                $model = $this->model::where('id', $request->route()->parameters()[$this->param])->withTrashed()->firstOrFail();
+            } else {
+                $model = $this->model::where('slug', $request->route()->parameters()[$this->param])->withTrashed()->firstOrFail();
+            }
 
             return view('panel::forms.model-crud', [
                 'model' => $model, 
@@ -121,7 +136,16 @@ class PanelController extends BaseController
     */
     public function advance_delete(Request $request)
     {
-        $model = $this->model::where('slug', $request->route()->parameters()[$this->param])->firstOrFail();
+
+        if($this->model == 'App\Models\User' 
+            or $this->model == 'App\Models\Order'
+            or $this->model == 'App\Models\Profile'
+        ){
+            $model = $this->model::where('id', $request->route()->parameters()[$this->param])->firstOrFail();
+        } else {
+            $model = $this->model::where('slug', $request->route()->parameters()[$this->param])->firstOrFail();
+        }
+        
 
         return view('panel::forms.model-crud' , [
             'model' => $model,

@@ -27,9 +27,14 @@ interface Datatable
     public function getfields(): Fluent;
 
     /**
-     * Here we provide all the top buttons which comes on list page like Add, Import etc.
+     * Here we provide the top buttons which comes on list page Import, DownloadSample.
      */
-    public function topButtons(): array;
+    public function topButtonsPart1(): array;
+
+    /**
+     * Here we provide the top buttons which comes on list page Export, BulkDelete, Trash.
+     */
+    public function topButtonsPart2(): array;
 
     /**
      * Here we provide all the table related buttons which comes on list page like view, edit etc.
@@ -60,6 +65,12 @@ interface Datatable
      * Here we provide all those table fields detail that comes after specific model related table fields.
      */
     public function getDefaultPostColumns(): array;
+
+    /**
+    * Here we provide the slug column
+    */
+
+    public function getDefaultSlugColumns(): array;
 
     /**
      * Here we provide single image detail.
