@@ -115,6 +115,15 @@
                     </div>
                     <hr>
                 @endif
+
+                @if ($model instanceOf App\Models\Collection)
+                    <div class="mb-3">
+                        <div>
+                            <livewire:collection-have-product wire:key="now()"  :collectionId="$model->id" />
+                        </div>
+                    </div>
+                    <hr>
+                @endif
                 
                 <x-panel-dependent-model :model="$model" />
             

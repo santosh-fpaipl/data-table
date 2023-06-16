@@ -25,7 +25,7 @@ class ModelExchange extends Controller
         if(empty($model)){
             $model="Category";
         }
-        $this->datatableClass = 'App\\Datatables\\'.$model.'Datatable';
+        $this->datatableClass = 'App\\DataTables\\'.$model.'Datatable';
         $this->model = 'App\\Models\\'.$model; 
         $this->datatable = new $this->datatableClass();
         $this->messages = $this->datatable->getMessages();
