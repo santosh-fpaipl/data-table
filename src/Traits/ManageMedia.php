@@ -33,9 +33,12 @@ trait ManageMedia
 
     public function addSingleMediaToModal($media)
     {
+        $fileType = $media->getClientMimeType();
+
         $mediaModel = $this
             ->addMedia($media)
             ->preservingOriginal()
+            ->withCustomProperties(['fileType' => $fileType])
             ->toMediaCollection($this->getMediaCollectionName('primary'));
 
         if ($mediaModel) {

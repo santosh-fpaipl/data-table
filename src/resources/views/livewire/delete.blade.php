@@ -27,7 +27,15 @@
         </div>
         
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Delete</button>
+            @if($confirm)
+                <button 
+                    type="button" 
+                    onclick="return confirm('This product are in cart of some users. \n Do you want to delete this product?') || event.stopImmediatePropagation()" 
+                    wire:click="confirm"
+                    class="btn btn-primary">Delete</button>
+            @else
+                <button type="submit" class="btn btn-primary">Delete</button>
+            @endif
         </div>
 
     </form>

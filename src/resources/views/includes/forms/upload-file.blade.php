@@ -74,8 +74,15 @@
 
         <div class="mb-3">
             @if (!empty($model->getImage('s100', 'primary')))
-                <img src="{{ $model->getImage('s100', 'primary') }}" class="img-thumbnail" width="50"
-                    height="50" />
+                <a href="{{ $model->getImage('s100', 'primary') }}" target="_blank">
+                    @if (Str::afterLast($model->getImage('s100', 'primary'), '.') == 'pdf')
+                        Open Pdf
+                    @else
+                        <img src="{{ $model->getImage('s100', 'primary') }}" class="img-thumbnail" width="50"
+                        height="50" />
+                    @endif
+                    
+                </a>
             @endif
         </div>
 

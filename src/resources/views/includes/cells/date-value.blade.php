@@ -9,7 +9,11 @@
 @if (!empty($model->$name))    
     <div class="text-{{ $align }}">
         <div>
-            {{ date_format($model->$name, 'M d, Y') }}
+            @if(is_object($model->$name))
+                {{ date_format($model->$name, 'M d, Y') }}
+            @else
+                 {{ date_format(date_create($model->$name), 'M d, Y') }}
+            @endif
         </div>
     </div>
 @endif

@@ -149,6 +149,18 @@ function getRoutesArray():array
             'orders.delete',
             'orders.export',
         ],
+        'delivery' => [
+            'deliveries.index',
+            'deliveries.show',
+            'deliveries.delete',
+            'deliveries.export',
+        ],
+        'payment' => [
+            'payments.index',
+            'payments.show',
+            'payments.delete',
+            'payments.export',
+        ],
         'collection' => [
             'collections.index',
             'collections.create',
@@ -165,6 +177,9 @@ function getRoutesArray():array
     );
 }
 
+/**
+ * Convert db timestamp in to string m-d-y
+ */
 function getTimestamp($value) {
     return date('m-d-Y',strtotime($value));
 }

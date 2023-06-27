@@ -14,19 +14,25 @@ trait ManageModel
                 $Model = $model::findorfail($record);
                 if($Model->hasDependency()){
                     foreach($Model->getDependency() as $relationalDependency){
-                        
-                        $relationDependencies = $Model->$relationalDependency;
+                        try
+                        { 
+                            $relationDependencies = $Model->$relationalDependency;
 
-                        if(empty($relationDependencies)){
-                            $relationCount = 0;
-                        } else {
-                            if ($relationDependencies instanceof Collection) {
-                                $relationCount = $relationDependencies->count();
+                            if(empty($relationDependencies)){
+                                $relationCount = 0;
                             } else {
-                                $relationCount = 1;
+                                if ($relationDependencies instanceof Collection) {
+                                    $relationCount = $relationDependencies->count();
+                                } else {
+                                    $relationCount = 1;
+                                }
+                            }
+                        } catch(\Exception $e){
+                            if($e->getMessage() == get_class($Model).'::'.$relationalDependency.' must return a relationship instance.'){
+                                $relationDependencies = $Model->$relationalDependency();
+                                $relationCount = $relationDependencies['total'];
                             }
                         }
-
 
                         if($relationCount){
                             $hasDependentRecord = true;

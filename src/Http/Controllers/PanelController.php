@@ -79,6 +79,8 @@ class PanelController extends BaseController
             if($this->model == 'App\Models\User' 
                 or $this->model == 'App\Models\Order' 
                 or $this->model == 'App\Models\Profile'
+                or $this->model == 'App\Models\Payment'
+                or $this->model == 'App\Models\Delivery'
             ){
                 $model = $this->model::where('id', $request->route()->parameters()[$this->param])->firstOrFail();
             } else {
@@ -109,6 +111,8 @@ class PanelController extends BaseController
             if($this->model == 'App\Models\User' 
                 or $this->model == 'App\Models\Order'
                 or $this->model == 'App\Models\Profile'
+                or $this->model == 'App\Models\Payment'
+                or $this->model == 'App\Models\Delivery'
             ){
                 $model = $this->model::where('id', $request->route()->parameters()[$this->param])->withTrashed()->firstOrFail();
             } else {
@@ -140,6 +144,8 @@ class PanelController extends BaseController
         if($this->model == 'App\Models\User' 
             or $this->model == 'App\Models\Order'
             or $this->model == 'App\Models\Profile'
+            or $this->model == 'App\Models\Payment'
+            or $this->model == 'App\Models\Delivery'
         ){
             $model = $this->model::where('id', $request->route()->parameters()[$this->param])->firstOrFail();
         } else {

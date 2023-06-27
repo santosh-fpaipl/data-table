@@ -9,7 +9,13 @@
 @if ($model->getImage('s100') != '[]')
     <div class="text-{{ $align }}">
         <div>
-            <img src="{{ $model->getImage('s100') }}" class="img-thumbnail" width="50" height="50" />
+            <a href="{{ $model->getImage('s100') }}" target="_blank">
+                @if (Str::afterLast($model->getImage('s100'), '.') == 'pdf')
+                    Open Pdf
+                @else
+                    <img src="{{ $model->getImage('s100') }}" class="img-thumbnail" width="50" height="50" />
+                @endif
+            </a>
         </div>
     </div>
 @endif

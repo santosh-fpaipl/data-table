@@ -21,5 +21,12 @@ trait ManageTag
         if($this->save()) return true; else return false;
     }
 
+
+    public function addModelTag(string $model): bool
+    {
+        $this->tags = $model;
+        if($this->save()) return true; else return false;
+    }
+
    
 }

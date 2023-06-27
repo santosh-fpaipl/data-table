@@ -113,7 +113,6 @@
                             <livewire:size-chart wire:key="now()" :productId="$model->id" />
                         </div>
                     </div>
-                    <hr>
                 @endif
 
                 @if ($model instanceOf App\Models\Collection)
@@ -122,8 +121,53 @@
                             <livewire:collection-have-product wire:key="now()"  :collectionId="$model->id" />
                         </div>
                     </div>
-                    <hr>
                 @endif
+
+                @if ($model instanceOf App\Models\Order)
+
+                    <div class="mb-3">
+                        <div>
+                            <livewire:order-products wire:key="now()"  :orderId="$model->id" />
+                        </div>
+                    </div>
+
+                    <hr>
+                    
+                    <div class="mb-3">
+                        <div>
+                            <livewire:order-update wire:key="now()"  :orderId="$model->id" />
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="mb-3">
+                        <div>
+                            <livewire:delivery-create wire:key="now()"  :orderId="$model->id" />
+                        </div>
+                    </div>
+
+                @endif
+
+                @if ($model instanceOf App\Models\Delivery)
+                    <div class="mb-3">
+                        <div>
+                            <livewire:delivery-update wire:key="now()"  :deliveryId="$model->id" />
+                        </div>
+                    </div>
+                @endif
+
+                @if ($model instanceOf App\Models\Payment)
+                    <div class="mb-3">
+                        <div>
+                            <livewire:payment-update wire:key="now()"  :paymentId="$model->id" />
+                        </div>
+                    </div>
+                @endif
+
+                
+
+                <hr>
                 
                 <x-panel-dependent-model :model="$model" />
             

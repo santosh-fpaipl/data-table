@@ -30,21 +30,28 @@ class DependentModel extends Component
     {
         if ($this->model->hasDependency()) {
             foreach ($this->model->getDependency() as $relationalDependency) {
-                $relationDependencies = $this->model->$relationalDependency;
-                if(empty($relationDependencies)){
-                    $relationCount = 0;
-                } else {
-                    if ($relationDependencies instanceof Collection) {
-                        $relationCount = $relationDependencies->count();
+                try{
+                    $relationDependencies = $this->model->$relationalDependency;
+                    if(empty($relationDependencies)){
+                        $relationCount = 0;
                     } else {
-                        $relationCount = 1;
+                        if ($relationDependencies instanceof Collection) {
+                            $relationCount = $relationDependencies->count();
+                        } else {
+                            $relationCount = 1;
+                        }
                     }
-                }
-                if ($relationCount) {
-                    $modelName =  Str::of(get_class($relationDependencies->first()))->afterLast('\\');
-                    $this->dependentRecordCount += $relationCount;
-                    //$this->dependentRecords[$relation] = $relationCount;
-                    $this->dependentRecords[strtolower($modelName)] = $relationCount;
+                    if ($relationCount) {
+                        $modelName =  Str::of(get_class($relationDependencies->first()))->afterLast('\\');
+                        $this->dependentRecordCount += $relationCount;
+                        //$this->dependentRecords[$relation] = $relationCount;
+                        $this->dependentRecords[strtolower($modelName)] = $relationCount;
+                    }
+                } catch(\Exception $e){
+                    if($e->getMessage() == get_class($this->model).'::'.$relationalDependency.' must return a relationship instance.'){
+                        $relationDependencies = $this->model->$relationalDependency(); 
+                        $this->dependentRecords[$relationDependencies['modelName']] = $relationDependencies['total'];
+                    }
                 }
             }
         }
